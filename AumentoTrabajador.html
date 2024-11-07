@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Aumento Salarial</title>
+</head>
+<body>
+    <h1>Calculadora de Aumento Salarial</h1>
+    <button onclick="calcularAumento()">Calcular Aumento</button>
+    <div id="resultado"></div> 
+
+    <script>
+        function calcularAumento() {
+            const nombre = prompt("Ingrese el nombre del trabajador:");
+            const salario = parseFloat(prompt("Ingrese el salario actual del trabajador:"));
+            const categoria = prompt("Ingrese la categoría del trabajador (A, B, C, D):").toUpperCase();
+
+            let aumentoPorcentaje;
+            
+            
+            switch (categoria) {
+                case 'A':
+                    aumentoPorcentaje = 0.15;
+                    break;
+                case 'B':
+                    aumentoPorcentaje = 0.30;
+                    break;
+                case 'C':
+                    aumentoPorcentaje = 0.10;
+                    break;
+                case 'D':
+                    aumentoPorcentaje = 0.20;
+                    break;
+                default:
+                    document.getElementById("resultado").innerHTML = "Categoría no válida.";
+                    return;
+            }
+
+            const aumento = salario * aumentoPorcentaje;
+            const nuevoSalario = salario + aumento;
+
+            
+            document.getElementById("resultado").innerHTML = `
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>Salario Actual:</strong> $${salario.toFixed(2)}</p>
+                <p><strong>Categoría:</strong> ${categoria}</p>
+                <p><strong>Porcentaje de Aumento:</strong> ${(aumentoPorcentaje * 100)}%</p>
+                <p><strong>Aumento:</strong> $${aumento.toFixed(2)}</p>
+                <p><strong>Nuevo Salario:</strong> $${nuevoSalario.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

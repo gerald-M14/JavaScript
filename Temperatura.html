@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+</head>
+<body>
+    <h1>Conversor de Temperatura Celsius a Fahrenheit</h1>
+
+    <!-- Campo de entrada para la temperatura en Celsius -->
+    <label for="celsius">Ingrese la temperatura en Celsius:</label>
+    <input type="number" id="celsius" />
+    <button onclick="convertirTemperatura()">Convertir y Analizar</button>
+
+    <p id="resultado"></p> <!-- Aquí se mostrará el resultado -->
+
+    <script>
+        function convertirTemperatura() {
+            const celsius = parseFloat(document.getElementById("celsius").value);
+
+            if (isNaN(celsius)) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un valor válido para la temperatura en Celsius.";
+                return;
+            }
+
+            // Convertir Celsius a Fahrenheit
+            const fahrenheit = (celsius * 9/5) + 32;
+
+            // Determinar el mensaje según la temperatura en Fahrenheit
+            let mensaje = "";
+
+            if (fahrenheit >= 14 && fahrenheit <= 32) {
+                mensaje = "Temperatura baja";
+            } else if (fahrenheit > 32 && fahrenheit <= 68) {
+                mensaje = "Temperatura adecuada";
+            } else if (fahrenheit > 68 && fahrenheit <= 96) {
+                mensaje = "Temperatura alta";
+            } else {
+                mensaje = "Temperatura desconocida";
+            }
+
+            // Mostrar la temperatura en Fahrenheit y el mensaje correspondiente
+            document.getElementById("resultado").innerHTML = `Temperatura en Fahrenheit: ${fahrenheit.toFixed(2)}°F<br>${mensaje}`;
+        }
+    </script>
+</body>
+</html>

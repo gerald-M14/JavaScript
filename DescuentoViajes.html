@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Descuento en Viajes</title>
+</head>
+<body>
+    <h1>Calculadora de Descuento en Viajes Turísticos</h1>
+    
+    <!-- Selección de origen -->
+    <label for="origen">Ciudad de Origen:</label>
+    <select id="origen">
+        <option value="palma">Palma</option>
+        <option value="otra">Otra</option>
+    </select>
+
+    <!-- Selección de destino -->
+    <label for="destino">Ciudad de Destino:</label>
+    <select id="destino">
+        <option value="la costa del sol">La Costa del Sol</option>
+        <option value="panchimalco">Panchimalco</option>
+        <option value="puerto el triunfo">Puerto El Triunfo</option>
+    </select>
+
+    <button onclick="calcularDescuento()">Calcular Descuento</button>
+    <p id="resultado"></p> 
+
+    <script>
+        function calcularDescuento() {
+            const origen = document.getElementById("origen").value;
+            const destino = document.getElementById("destino").value;
+            let descuento = 0;
+
+            
+            if (origen === "palma") {
+                if (destino === "la costa del sol") {
+                    descuento = 5;
+                } else if (destino === "panchimalco") {
+                    descuento = 10;
+                } else if (destino === "puerto el triunfo") {
+                    descuento = 15;
+                }
+            }
+
+        
+            const mensaje = descuento > 0
+                ? `Origen: ${origen.charAt(0).toUpperCase() + origen.slice(1)}, Destino: ${destino.charAt(0).toUpperCase() + destino.slice(1)}. Descuento aplicado: ${descuento}%.`
+                : "No hay descuento disponible para el destino seleccionado desde el origen indicado.";
+
+            document.getElementById("resultado").textContent = mensaje;
+        }
+    </script>
+</body>
+</html>

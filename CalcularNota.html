@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Nota Final</title>
+</head>
+<body>
+    <h1>Calculadora de Nota Final</h1>
+    <button onclick="calcularNotaFinal()">Calcular Nota</button>
+    <p id="Nombre"></p> 
+    <p id="Carnet"></p> 
+    <p id="Nota"></p> 
+    <script>
+        function calcularNotaFinal() {
+            const nombre = prompt("Ingrese el nombre del alumno:");
+            const carnet = prompt("Ingrese el carnet del alumno:");
+            const examen = parseFloat(prompt("Ingrese la nota del examen (0-100):"));
+            const tareas = parseFloat(prompt("Ingrese la nota de las tareas (0-100):"));
+            const asistencia = parseFloat(prompt("Ingrese la nota de la asistencia (0-100):"));
+            const investigacion = parseFloat(prompt("Ingrese la nota de la investigación (0-100):"));
+
+            const notaFinal = (examen * 0.2) + (tareas * 0.4) + (asistencia * 0.1) + (investigacion * 0.3);
+
+            console.log(`Nombre: ${nombre}`);
+            console.log(`Carnet: ${carnet}`);
+            console.log(`Nota Final: ${notaFinal.toFixed(2)}`);
+
+            document.getElementById("Nombre").textContent = (`Nombre: ${nombre}`);
+            document.getElementById("Carnet").textContent = (`Carnet: ${carnet}`);
+            document.getElementById("Nota").textContent = (`Nota Final: ${notaFinal}`);
+        }
+    </script>
+</body>
+</html>

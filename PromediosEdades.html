@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promedio de Edades por Turno</title>
+</head>
+<body>
+    <h1>Promedio de Edades de Estudiantes</h1>
+
+    <!-- Formulario para ingresar las edades -->
+    <h2>Turno Mañana (5 estudiantes)</h2>
+    <div id="mañana">
+        <label for="mañana1">Edad del estudiante 1:</label>
+        <input type="number" id="mañana1"><br>
+        <label for="mañana2">Edad del estudiante 2:</label>
+        <input type="number" id="mañana2"><br>
+        <label for="mañana3">Edad del estudiante 3:</label>
+        <input type="number" id="mañana3"><br>
+        <label for="mañana4">Edad del estudiante 4:</label>
+        <input type="number" id="mañana4"><br>
+        <label for="mañana5">Edad del estudiante 5:</label>
+        <input type="number" id="mañana5"><br>
+    </div>
+
+    <h2>Turno Tarde (6 estudiantes)</h2>
+    <div id="tarde">
+        <label for="tarde1">Edad del estudiante 1:</label>
+        <input type="number" id="tarde1"><br>
+        <label for="tarde2">Edad del estudiante 2:</label>
+        <input type="number" id="tarde2"><br>
+        <label for="tarde3">Edad del estudiante 3:</label>
+        <input type="number" id="tarde3"><br>
+        <label for="tarde4">Edad del estudiante 4:</label>
+        <input type="number" id="tarde4"><br>
+        <label for="tarde5">Edad del estudiante 5:</label>
+        <input type="number" id="tarde5"><br>
+        <label for="tarde6">Edad del estudiante 6:</label>
+        <input type="number" id="tarde6"><br>
+    </div>
+
+    <h2>Turno Noche (11 estudiantes)</h2>
+    <div id="noche">
+        <label for="noche1">Edad del estudiante 1:</label>
+        <input type="number" id="noche1"><br>
+        <label for="noche2">Edad del estudiante 2:</label>
+        <input type="number" id="noche2"><br>
+        <label for="noche3">Edad del estudiante 3:</label>
+        <input type="number" id="noche3"><br>
+        <label for="noche4">Edad del estudiante 4:</label>
+        <input type="number" id="noche4"><br>
+        <label for="noche5">Edad del estudiante 5:</label>
+        <input type="number" id="noche5"><br>
+        <label for="noche6">Edad del estudiante 6:</label>
+        <input type="number" id="noche6"><br>
+        <label for="noche7">Edad del estudiante 7:</label>
+        <input type="number" id="noche7"><br>
+        <label for="noche8">Edad del estudiante 8:</label>
+        <input type="number" id="noche8"><br>
+        <label for="noche9">Edad del estudiante 9:</label>
+        <input type="number" id="noche9"><br>
+        <label for="noche10">Edad del estudiante 10:</label>
+        <input type="number" id="noche10"><br>
+        <label for="noche11">Edad del estudiante 11:</label>
+        <input type="number" id="noche11"><br>
+    </div>
+
+    <button onclick="calcularPromedios()">Calcular Promedios</button>
+
+    <h2>Resultados</h2>
+    <div id="resultados"></div>
+
+    <script>
+        function calcularPromedios() {
+            // Obtener las edades de los estudiantes de cada turno
+            let edadesMañana = [];
+            for (let i = 1; i <= 5; i++) {
+                edadesMañana.push(parseInt(document.getElementById('mañana' + i).value));
+            }
+
+            let edadesTarde = [];
+            for (let i = 1; i <= 6; i++) {
+                edadesTarde.push(parseInt(document.getElementById('tarde' + i).value));
+            }
+
+            let edadesNoche = [];
+            for (let i = 1; i <= 11; i++) {
+                edadesNoche.push(parseInt(document.getElementById('noche' + i).value));
+            }
+
+            // Calcular los promedios de cada turno
+            let promedioMañana = calcularPromedio(edadesMañana);
+            let promedioTarde = calcularPromedio(edadesTarde);
+            let promedioNoche = calcularPromedio(edadesNoche);
+
+            // Mostrar los promedios y cuál es el mayor
+            let resultados = `
+                <p><strong>Promedio de edades en el turno Mañana:</strong> ${promedioMañana}</p>
+                <p><strong>Promedio de edades en el turno Tarde:</strong> ${promedioTarde}</p>
+                <p><strong>Promedio de edades en el turno Noche:</strong> ${promedioNoche}</p>
+            `;
+
+            // Determinar el turno con el promedio más alto
+            let turnoMayorPromedio = "Turno Mañana";
+            let mayorPromedio = promedioMañana;
+
+            if (promedioTarde > mayorPromedio) {
+                mayorPromedio = promedioTarde;
+                turnoMayorPromedio = "Turno Tarde";
+            }
+
+            if (promedioNoche > mayorPromedio) {
+                mayorPromedio = promedioNoche;
+                turnoMayorPromedio = "Turno Noche";
+            }
+
+            resultados += `<p><strong>El turno con el promedio más alto es:</strong> ${turnoMayorPromedio} con un promedio de ${mayorPromedio}</p>`;
+
+            // Mostrar los resultados en la página
+            document.getElementById('resultados').innerHTML = resultados;
+        }
+
+        // Función para calcular el promedio
+        function calcularPromedio(edades) {
+            let suma = 0;
+            let cantidad = 0;
+            edades.forEach(edad => {
+                if (!isNaN(edad)) {
+                    suma += edad;
+                    cantidad++;
+                }
+            });
+            return cantidad > 0 ? (suma / cantidad).toFixed(2) : 0;
+        }
+    </script>
+</body>
+</html>
